@@ -1,0 +1,140 @@
+name: Learner Feedback
+description: Share your experience with Blueprint Assist training — what worked, what didn't, and what you'd like to see improved.
+title: "[Feedback] "
+labels: ["feedback", "training"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to share your experience. Your feedback directly improves the training content and Blueprint Assist itself.
+
+  - type: dropdown
+    id: session-type
+    attributes:
+      label: Session Type
+      description: How did you go through the training?
+      options:
+        - Self-paced (read through sections on my own)
+        - Instructor-led (attended a live session)
+        - Workshop (hands-on lab with guidance)
+        - Mixed
+    validations:
+      required: true
+
+  - type: dropdown
+    id: bpa-version
+    attributes:
+      label: Blueprint Assist Version
+      description: Which version of dap-bpa were you running? (check with `dap-bpa --version`)
+      options:
+        - v0.27.0
+        - v0.26.0
+        - v0.25.0 or earlier
+        - Unknown
+    validations:
+      required: true
+
+  - type: dropdown
+    id: role
+    attributes:
+      label: Your Role
+      options:
+        - Customer
+        - Partner / ISV
+        - Dell employee — Sales / SE
+        - Dell employee — Engineering / TME
+        - Other
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: sections-completed
+    attributes:
+      label: Sections Completed
+      description: Check all sections you went through during this session.
+      options:
+        - label: "0 — Quick Start: Zero to Hero"
+        - label: "1 — Introduction to Blueprint Assist"
+        - label: "2 — Installation"
+        - label: "3 — Orchestration Service Authentication"
+        - label: "4 — Skills Overview"
+        - label: "5 — Skills Architecture"
+        - label: "6 — Supported Blueprints"
+        - label: "7 — Building Blueprints"
+        - label: "8 — Blueprint Monitoring"
+        - label: "9 — Blueprint Reasoning"
+        - label: "10 — Blueprint Anatomy"
+        - label: "11 — Skill Anatomy"
+        - label: "12 — Hands-on Workshop"
+        - label: "13 — CLI Command Reference"
+        - label: "14 — Architecture Diagrams"
+        - label: "15 — Dell Automation Studio Offer Details"
+        - label: "16 — Tunnel Connections"
+        - label: "17 — Model and Architecture Decisions"
+        - label: "18 — Specification Considerations"
+        - label: "19 — Blueprint Assist MCP Server"
+        - label: "20 — Dell Automation Studio Catalog"
+
+  - type: textarea
+    id: what-worked
+    attributes:
+      label: What worked well?
+      description: Which concepts, demos, or sections were most useful or easy to follow?
+      placeholder: "e.g. Section 0 quick start got me from zero to a running blueprint in 15 minutes..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-confused
+    attributes:
+      label: What was confusing or could be clearer?
+      description: Anything that felt incomplete, hard to follow, or assumed too much prior knowledge?
+      placeholder: "e.g. Section 3 auth config steps weren't clear for WSL environments..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: questions
+    attributes:
+      label: Questions I still have
+      description: Things you couldn't find the answer to during the training.
+      placeholder: "e.g. How do I use BPA with a private orchestrator behind a VPN?"
+    validations:
+      required: false
+
+  - type: textarea
+    id: bugs
+    attributes:
+      label: Bugs or errors encountered
+      description: |
+        Include the CLI command, error message, and which section you were in.
+        For BPA bugs (not training content), also file an issue with the BPA product team.
+      render: text
+      placeholder: |
+        Command: dap-bpa blueprint lint --file blueprint.yaml
+        Error: FileNotFoundError: imported file 'scripts/deploy.sh' not found
+        Section: 13 — CLI Command Reference
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggestions
+    attributes:
+      label: Feature requests or suggestions
+      description: Things you wish BPA could do, or improvements to the training content or structure.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: overall-rating
+    attributes:
+      label: Overall Training Rating
+      description: How would you rate the training overall?
+      options:
+        - "5 — Excellent: clear, complete, immediately useful"
+        - "4 — Good: mostly clear with minor gaps"
+        - "3 — Average: useful but needed additional context"
+        - "2 — Below average: hard to follow or incomplete"
+        - "1 — Poor: did not meet expectations"
+    validations:
+      required: false

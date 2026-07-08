@@ -1,0 +1,16 @@
+title: Blueprint Assist Training
+url: "https://tme-tech-ops.github.io"
+baseurl: "/blueprint-assist-training"
+theme: jekyll-theme-minimal
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: true
+include:
+  - "*.md"
+exclude:
+  - "4.examples/"
+  - "2.presentations/"
+  - "3.resources/"
+  - "docs/docs-internal/"
