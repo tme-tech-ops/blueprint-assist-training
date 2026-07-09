@@ -56,3 +56,12 @@ htmlcov/
 # Target build folders
 target-build-folder/
 *.j2
+
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+Gemfile.lock
+.bundle/
+vendor/

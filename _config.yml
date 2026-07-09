@@ -1,16 +1,38 @@
 title: Blueprint Assist Training
-url: "https://tme-tech-ops.github.io"
+description: Training materials and documentation for Blueprint Assist (BPA), an AI-powered infrastructure deployment tool.
+url: "https://kennylowe.github.io"
 baseurl: "/blueprint-assist-training"
-theme: jekyll-theme-minimal
+
 plugins:
   - jekyll-relative-links
+  - jekyll-seo-tag
+
 relative_links:
   enabled: true
   collections: true
+
 include:
   - "*.md"
+
 exclude:
   - "4.examples/"
   - "2.presentations/"
   - "3.resources/"
   - "docs/docs-internal/"
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "node_modules/"
+  - "vendor/"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
