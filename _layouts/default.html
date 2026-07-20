@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} &mdash; {% endif %}{{ site.title | default: site.github.repository_name }}</title>
+  {% seo %}
+  <link rel="icon" href="{{ "/Studio-Icon-Headset.png" | relative_url }}" type="image/png">
+  <style>
+    /* ===== CSS Reset & Base ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sidebar-width: 280px;
+      --header-height: 56px;
+      --color-bg: #ffffff;
+      --color-sidebar-bg: #f8f9fb;
+      --color-sidebar-border: #e1e4e8;
+      --color-header-bg: #0e2040;
+      --color-header-text: #ffffff;
+      --color-accent: #0076ce;
+      --color-accent-hover: #005fa3;
+      --color-text: #24292f;
+      --color-text-muted: #57606a;
+      --color-link: #0076ce;
+      --color-link-hover: #005fa3;
+      --color-code-bg: #f6f8fa;
+      --color-code-border: #d0d7de;
+      --color-blockquote: #0076ce;
+      --color-nav-active-bg: #e8f0fe;
+      --color-nav-active-text: #0076ce;
+      --color-nav-hover-bg: #eef1f5;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      --radius: 6px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,.1);
+    }
+
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ===== Top Header ===== */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-height);
+      background: var(--color-header-bg);
+      color: var(--color-header-text);
+      display: flex;
+      align-items: center;
+      padding: 0 1.25rem;
+      z-index: 200;
+      box-shadow: var(--shadow-md);
+      gap: 1rem;
+    }
+
+    .site-header__toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-header-text);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      line-height: 1;
+    }
+
+    .site-header__toggle:hover { background: rgba(255,255,255,.12); }
+
+    .site-header__toggle svg { display: block; }
+
+    .site-header__logo {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--color-header-text);
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+    }
+
+    .site-header__logo:hover { color: #a8d4f5; }
+
+    .site-header__github {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      color: rgba(255,255,255,.8);
+      text-decoration: none;
+      font-size: .85rem;
+      white-space: nowrap;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: var(--radius);
+      padding: .3rem .7rem;
+      transition: background .15s;
+    }
+
+    .site-header__github:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+    /* ===== Layout ===== */
+    .layout {
+      display: flex;
+      padding-top: var(--header-height);
+      min-height: 100vh;
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      bottom: 0;
+      width: var(--sidebar-width);
+      background: var(--color-sidebar-bg);
+      border-right: 1px solid var(--color-sidebar-border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 100;
+      transition: transform .25s ease;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .sidebar__inner { padding: 1.25rem 0 2rem; }
+
+    .sidebar__section-label {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--color-text-muted);
+      padding: 1.1rem 1.25rem .35rem;
+      display: block;
+    }
+
+    .sidebar__nav { list-style: none; }
+
+    .sidebar__nav a {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .45rem 1.25rem;
+      color: var(--color-text);
+      text-decoration: none;
+      font-size: .88rem;
+      line-height: 1.4;
+      border-left: 3px solid transparent;
+      transition: background .12s, color .12s;
+    }
+
+    .sidebar__nav a:hover {
+      background: var(--color-nav-hover-bg);
+      color: var(--color-accent);
+    }
+
+    .sidebar__nav a.active {
+      background: var(--color-nav-active-bg);
+      color: var(--color-nav-active-text);
+      border-left-color: var(--color-accent);
+      font-weight: 600;
+    }
+
+    .sidebar__nav .nav-badge {
+      font-size: .68rem;
+      background: var(--color-code-bg);
+      border: 1px solid var(--color-code-border);
+      border-radius: 3px;
+      padding: 0 .35rem;
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+      flex-shrink: 0;
+    }
+
+    /* Sidebar overlay for mobile */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.4);
+      z-index: 90;
+    }
+
+    /* ===== Main Content ===== */
+    .main-wrap {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      min-width: 0;
+    }
+
+    .main {
+      max-width: 900px;
+      padding: 2.5rem 2.5rem 4rem;
+    }
+
+    /* ===== Prose Styles ===== */
+    .prose h1,
+    .prose h2,
+    .prose h3,
+    .prose h4,
+    .prose h5,
+    .prose h6 {
+      font-weight: 700;
+      line-height: 1.3;
+      margin-top: 2rem;
+      margin-bottom: .6rem;
+      color: var(--color-text);
+    }
+
+    .prose h1 { font-size: 2rem; margin-top: 0; border-bottom: 2px solid var(--color-sidebar-border); padding-bottom: .5rem; }
+    .prose h2 { font-size: 1.45rem; border-bottom: 1px solid var(--color-sidebar-border); padding-bottom: .3rem; }
+    .prose h3 { font-size: 1.2rem; }
+    .prose h4 { font-size: 1.05rem; }
+    .prose h5, .prose h6 { font-size: .95rem; }
+
+    .prose p { margin-bottom: 1rem; }
+
+    .prose a {
+      color: var(--color-link);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .prose a:hover { color: var(--color-link-hover); }
+
+    .prose ul, .prose ol { margin: .5rem 0 1rem 1.5rem; }
+    .prose li { margin-bottom: .25rem; }
+    .prose li > ul, .prose li > ol { margin-top: .25rem; }
+
+    /* Task list checkboxes */
+    .prose .task-list-item { list-style: none; margin-left: -1.5rem; padding-left: 0; }
+    .prose .task-list-item input[type="checkbox"] { margin-right: .5rem; }
+
+    .prose blockquote {
+      border-left: 4px solid var(--color-blockquote);
+      background: #f0f7ff;
+      margin: 1rem 0;
+      padding: .75rem 1rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      color: var(--color-text);
+    }
+
+    .prose blockquote p:last-child { margin-bottom: 0; }
+
+    .prose code {
+      font-family: var(--font-mono);
+      font-size: .875em;
+      background: var(--color-code-bg);
+      border: 1px solid var(--color-code-border);
+      border-radius: 4px;
+      padding: .1em .35em;
+    }
+
+    .prose pre {
+      background: #0d1117;
+      color: #e6edf3;
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      border: 1px solid #30363d;
+      position: relative;
+    }
+
+    .prose pre code {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: .88rem;
+      color: inherit;
+      white-space: pre;
+    }
+
+    .prose table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: .9rem;
+      overflow-x: auto;
+      display: block;
+    }
+
+    .prose th, .prose td {
+      padding: .5rem .75rem;
+      border: 1px solid var(--color-code-border);
+      text-align: left;
+    }
+
+    .prose th {
+      background: var(--color-code-bg);
+      font-weight: 600;
+    }
+
+    .prose tr:nth-child(even) td { background: #fafbfc; }
+
+    .prose img {
+      max-width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid var(--color-code-border);
+    }
+
+    .prose hr {
+      border: none;
+      border-top: 1px solid var(--color-sidebar-border);
+      margin: 2rem 0;
+    }
+
+    .prose details {
+      border: 1px solid var(--color-code-border);
+      border-radius: var(--radius);
+      padding: .5rem 1rem;
+      margin: .75rem 0;
+    }
+
+    .prose summary { cursor: pointer; font-weight: 600; }
+
+    /* ===== Mermaid diagrams ===== */
+    .mermaid {
+      background: var(--color-code-bg);
+      border: 1px solid var(--color-code-border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      margin: 1rem 0;
+      text-align: center;
+      overflow-x: auto;
+    }
+
+    /* ===== Page footer ===== */
+    .page-footer {
+      border-top: 1px solid var(--color-sidebar-border);
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      font-size: .82rem;
+      color: var(--color-text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .page-footer a { color: var(--color-link); }
+
+    /* ===== Search box ===== */
+    .sidebar__search {
+      padding: .75rem 1rem;
+    }
+
+    .sidebar__search input {
+      width: 100%;
+      padding: .4rem .75rem;
+      border: 1px solid var(--color-code-border);
+      border-radius: var(--radius);
+      background: var(--color-bg);
+      font-size: .85rem;
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    .sidebar__search input:focus { border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(0,118,206,.12); }
+
+    .sidebar__logo {
+      padding: 1.25rem 1.25rem .75rem;
+      text-align: center;
+    }
+
+    .sidebar__logo img {
+      width: 150px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+      :root { --sidebar-width: 260px; }
+    }
+
+    @media (max-width: 720px) {
+      .site-header__toggle { display: flex; align-items: center; }
+
+      .sidebar {
+        transform: translateX(-100%);
+        box-shadow: var(--shadow-md);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .sidebar-overlay.open { display: block; }
+
+      .main-wrap { margin-left: 0; }
+
+      .main { padding: 1.5rem 1rem 3rem; }
+
+      .prose h1 { font-size: 1.6rem; }
+      .prose h2 { font-size: 1.25rem; }
+    }
+
+    @media (max-width: 480px) {
+      .site-header__github span { display: none; }
+      .main { padding: 1.25rem .75rem 2.5rem; }
+    }
+
+    /* ===== Syntax highlighting (minimal dark) ===== */
+    .highlight .k, .highlight .kd, .highlight .kn, .highlight .kp { color: #ff7b72; }
+    .highlight .s, .highlight .s1, .highlight .s2 { color: #a5d6ff; }
+    .highlight .c, .highlight .c1, .highlight .cm { color: #8b949e; font-style: italic; }
+    .highlight .n { color: #e6edf3; }
+    .highlight .o { color: #ff7b72; }
+    .highlight .mi, .highlight .mf { color: #79c0ff; }
+    .highlight .na { color: #e3b341; }
+    .highlight .nb { color: #79c0ff; }
+
+    /* ===== Scrollbar ===== */
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+  </style>
+  {% if site.head_custom %}{{ site.head_custom }}{% endif %}
+</head>
+<body>
+
+  <!-- Top header -->
+  <header class="site-header">
+    <button class="site-header__toggle" id="sidebar-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+        <rect y="3" width="20" height="2" rx="1"/>
+        <rect y="9" width="20" height="2" rx="1"/>
+        <rect y="15" width="20" height="2" rx="1"/>
+      </svg>
+    </button>
+    <a class="site-header__logo" href="{{ "/" | relative_url }}">{{ site.title | default: site.github.repository_name }}</a>
+    {% if site.github.repository_url %}
+    <a class="site-header__github" href="{{ site.github.repository_url }}" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+      </svg>
+      <span>GitHub</span>
+    </a>
+    {% endif %}
+  </header>
+
+  <!-- Sidebar overlay (mobile) -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="layout">
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar" aria-label="Site navigation">
+      <div class="sidebar__inner">
+
+        <div class="sidebar__logo">
+          <img src="{{ "/Studio-Icon-Headset.png" | relative_url }}" alt="Blueprint Assist Training">
+        </div>
+
+        <div class="sidebar__search">
+          <input type="search" id="nav-search" placeholder="Filter sections..." aria-label="Filter navigation">
+        </div>
+
+        <span class="sidebar__section-label">Getting Started</span>
+        <ul class="sidebar__nav" id="nav-list">
+          <li><a href="{{ "/" | relative_url }}" {% if page.url == "/" %}class="active"{% endif %}>
+            Home
+          </a></li>
+        </ul>
+
+        <span class="sidebar__section-label">Training Sections</span>
+        {% assign section_pages = site.pages | where_exp: "p", "p.url contains '/1.sections/'" | where_exp: "p", "p.url contains '/content'" | sort: "url" %}
+        <ul class="sidebar__nav" id="nav-list">
+          {% for p in section_pages %}
+            {% assign dir_parts = p.url | split: "/" %}
+            {% assign dir_name = dir_parts[2] %}
+            {% assign badge_parts = dir_name | split: "-" %}
+            {% assign badge = badge_parts[1] %}
+            {% if p.title contains ": " %}
+              {% assign display_title = p.title | split: ": " | last %}
+            {% elsif p.title %}
+              {% assign display_title = p.title %}
+            {% else %}
+              {% assign display_title = dir_name %}
+            {% endif %}
+            <li><a href="{{ p.url | relative_url }}" {% if page.url == p.url %}class="active"{% endif %}>
+              <span class="nav-badge">{{ badge }}</span> {{ display_title }}
+            </a></li>
+          {% endfor %}
+        </ul>
+
+        <span class="sidebar__section-label">Reference</span>
+        <ul class="sidebar__nav">
+
+          <li><a href="{{ "/docs/FULL-DAY-TRAINING-AGENDA" | relative_url }}" {% if page.url contains "TRAINING-AGENDA" %}class="active"{% endif %}>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg>
+            Training Agenda
+          </a></li>
+          <li><a href="{{ "/docs/LEARNER-ASSESSMENT" | relative_url }}" {% if page.url contains "LEARNER" %}class="active"{% endif %}>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h11A1.5 1.5 0 0 1 15 2.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 13.5v-11zM2.5 2a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5h-11z"/><path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/></svg>
+            Learner Assessment
+          </a></li>
+        </ul>
+
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="main-wrap">
+      <main class="main">
+        <article class="prose">
+          {{ content }}
+        </article>
+        <footer class="page-footer">
+          <span>&copy; {{ site.time | date: "%Y" }} {{ site.title | default: site.github.repository_name }}</span>
+          {% if site.github.is_project_page %}
+          <span>Maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a> &mdash; <a href="{{ site.github.repository_url }}">View on GitHub</a></span>
+          {% endif %}
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <!-- Mermaid -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    // ===== Sidebar toggle =====
+    var toggle = document.getElementById('sidebar-toggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebar-overlay');
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      overlay.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    toggle.addEventListener('click', function () {
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    });
+
+    overlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar on nav link click (mobile)
+    sidebar.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (window.innerWidth <= 720) closeSidebar();
+      });
+    });
+
+    // ===== Nav search / filter =====
+    var searchInput = document.getElementById('nav-search');
+    searchInput.addEventListener('input', function () {
+      var q = this.value.toLowerCase();
+      document.querySelectorAll('.sidebar__nav li').forEach(function (li) {
+        var text = li.textContent.toLowerCase();
+        li.style.display = (!q || text.includes(q)) ? '' : 'none';
+      });
+    });
+
+    // ===== Mermaid =====
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('pre > code.language-mermaid').forEach(function (codeEl) {
+        var pre = codeEl.parentElement;
+        var div = document.createElement('div');
+        div.className = 'mermaid';
+        div.textContent = codeEl.textContent;
+        pre.replaceWith(div);
+      });
+      if (window.mermaid) {
+        mermaid.initialize({ startOnLoad: false, theme: 'default' });
+        mermaid.run({ querySelector: '.mermaid' });
+      }
+    });
+  </script>
+</body>
+</html>
