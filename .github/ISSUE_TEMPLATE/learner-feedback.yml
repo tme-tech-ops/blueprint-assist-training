@@ -1,0 +1,502 @@
+name: Learner Feedback
+description: Share your experience with Blueprint Assist training — what worked, what didn't, and what you'd like to see improved.
+title: "[Feedback] "
+labels: ["feedback", "training"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to share your experience. Your feedback directly improves the training content and Blueprint Assist itself.
+
+  - type: dropdown
+    id: session-type
+    attributes:
+      label: Session Type
+      description: How did you go through the training?
+      options:
+        - Self-paced (read through sections on my own)
+        - Instructor-led (attended a live session)
+        - Workshop (hands-on lab with guidance)
+        - Mixed
+    validations:
+      required: true
+
+  - type: textarea
+    id: mixed-details
+    attributes:
+      label: Mixed Session Details
+      description: If you selected Mixed, please specify which combination of the three session types you used.
+      placeholder: "e.g. Started with self-paced reading, then attended instructor-led session for sections 5-8..."
+    validations:
+      required: false
+
+  - type: input
+    id: instructor-poc
+    attributes:
+      label: Instructor/POC Name
+      description: If you attended an instructor-led session or workshop, who was your instructor or point of contact?
+      placeholder: "e.g. John Smith, Jane Doe"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: bpa-version
+    attributes:
+      label: Blueprint Assist Version
+      description: Which version of dap-bpa were you running? (check with `dap-bpa --version`)
+      options:
+        - v0.29.3
+        - v0.28.2
+        - v0.28.1
+        - v0.28.0
+        - v0.27.0
+        - v0.26.0
+        - v0.25.0 or earlier
+        - Unknown
+    validations:
+      required: true
+
+  - type: dropdown
+    id: role
+    attributes:
+      label: Your Role
+      options:
+        - Customer
+        - Partner / ISV
+        - Dell employee — Sales / SE / Services
+        - Dell employee — Engineering / TME
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: other-role
+    attributes:
+      label: Other Role Details
+      description: If you selected Other, please specify your role.
+      placeholder: "e.g. Consultant, System Administrator, etc."
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Sections Completed and Ratings
+        
+        For each section you completed, please rate your experience from 1 (negative) to 5 (positive). Leave sections blank if you didn't complete them.
+
+  - type: dropdown
+    id: section-0-rating
+    attributes:
+      label: "Section 000 — Quick Start - Zero to Hero"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-1-rating
+    attributes:
+      label: "Section 001 — Introduction to Blueprint Assist"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-2-rating
+    attributes:
+      label: "Section 002 — Installation and Setup"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-3-rating
+    attributes:
+      label: "Section 003 — Orchestration Service Authentication"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-4-rating
+    attributes:
+      label: "Section 004 — Blueprint Assist Skills Overview"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-5-rating
+    attributes:
+      label: "Section 005 — Skills-Based Architecture"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-6-rating
+    attributes:
+      label: "Section 006 — Supported Blueprints"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-7-rating
+    attributes:
+      label: "Section 007 — Building Blueprints with BPA"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-8-rating
+    attributes:
+      label: "Section 008 — Blueprint Monitoring"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-9-rating
+    attributes:
+      label: "Section 009 — Blueprint Reasoning and Analysis"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-10-rating
+    attributes:
+      label: "Section 010 — Blueprint Anatomy"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-11-rating
+    attributes:
+      label: "Section 011 — Skill Anatomy and Design"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-12-rating
+    attributes:
+      label: "Section 012 — Hands-On Workshop"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-13-rating
+    attributes:
+      label: "Section 013 — dap-bpa CLI Command Reference"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-14-rating
+    attributes:
+      label: "Section 014 — Blueprint Assist Architecture Diagrams"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-15-rating
+    attributes:
+      label: "Section 015 — Dell Automation Studio Offer Details"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-16-rating
+    attributes:
+      label: "Section 016 — tunnel-connections"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-17-rating
+    attributes:
+      label: "Section 017 — Model and Architecture Decisions"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-18-rating
+    attributes:
+      label: "Section 018 — Specification Considerations for Blueprint Development"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-19-rating
+    attributes:
+      label: "Section 019 — Blueprint Assist MCP Server"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-20-rating
+    attributes:
+      label: "Section 020 — Dell Automation Studio Catalog"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-21-rating
+    attributes:
+      label: "Section 021 — Blueprint Visualizer"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-22-rating
+    attributes:
+      label: "Section 022 — Licensing Model"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: section-23-rating
+    attributes:
+      label: "Section 023 — Customer Pattern Learning"
+      description: Rate this section if you completed it (1=negative, 5=positive)
+      options:
+        - ""
+        - "1 — Negative experience"
+        - "2 — Below expectations"
+        - "3 — Met expectations"
+        - "4 — Above expectations"
+        - "5 — Excellent experience"
+    validations:
+      required: false
+  - type: textarea
+    id: what-worked
+    attributes:
+      label: What worked well?
+      description: Which concepts, demos, or sections were most useful or easy to follow? Please reference specific sections.
+      placeholder: "e.g. Section 0 quick start got me from zero to a running blueprint in 15 minutes..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-confused
+    attributes:
+      label: What was confusing or could be clearer?
+      description: Anything that felt incomplete, hard to follow, or assumed too much prior knowledge? Please reference specific sections.
+      placeholder: "e.g. Section 3 auth config steps weren't clear for WSL environments..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: questions
+    attributes:
+      label: Questions I still have
+      description: |
+        Things you couldn't find the answer to during the training. 
+        Note: All questions submitted here will be organized, processed, and responded to by our team.
+      placeholder: "e.g. How do I use BPA with a private orchestrator behind a VPN?"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature Requests
+        
+        For feature requests or suggestions about Blueprint Assist or training improvements, please use our [dedicated feature request form](https://github.com/tme-tech-ops/blueprint-assist-training-pre-release/issues/new?template=feature-request.yml).
+
+  - type: dropdown
+    id: overall-rating
+    attributes:
+      label: Overall Training Rating
+      description: How would you rate the training overall?
+      options:
+        - "5 — Excellent: clear, complete, immediately useful"
+        - "4 — Good: mostly clear with minor gaps"
+        - "3 — Average: useful but needed additional context"
+        - "2 — Below average: hard to follow or incomplete"
+        - "1 — Poor: did not meet expectations"
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        **Ready to submit?** Click the "Submit new issue" button below to send your feedback to our team. Thank you for helping us improve Blueprint Assist training!
