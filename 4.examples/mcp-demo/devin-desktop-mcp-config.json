@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "blueprint-assist-stamp3": {
+      "serverUrl": "https://ai-bp-mcp-server.sp.dell.com/mcp",
+      "headers": {
+        "x-dap-customer-token": "<YOUR_CUSTOMER_TOKEN>",
+        "x-dap-orchestrator-domain": "orchestrator.v1.dap.stamp3.tme.lab",
+        "x-dap-org-id": "<YOUR_ORG_ID>"
+      }
+    },
+    "blueprint-assist-agent-stamp3": {
+      "serverUrl": "https://agent-mcp-server.sp.dell.com/mcp",
+      "headers": {
+        "x-dap-customer-token": "<YOUR_CUSTOMER_TOKEN>",
+        "x-dap-orchestrator-domain": "orchestrator.v1.dap.stamp3.tme.lab",
+        "x-dap-org-id": "<YOUR_ORG_ID>"
+      }
+    }
+  }
+}
