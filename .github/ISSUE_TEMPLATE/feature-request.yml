@@ -1,0 +1,71 @@
+name: Feature Request
+description: Suggest new features or improvements for Blueprint Assist or the training content
+title: "[Feature Request] "
+labels: ["enhancement", "feature-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest improvements! Your ideas help us make Blueprint Assist and the training better for everyone.
+
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Request Type
+      description: What type of improvement are you suggesting?
+      options:
+        - Blueprint Assist CLI tool enhancement
+        - Training content improvement
+        - New training section or topic
+        - Training delivery improvement
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: Describe the feature or improvement you'd like to see
+      placeholder: "e.g. Add a command to automatically validate blueprint dependencies before deployment..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case
+      description: What problem would this solve or what workflow would it improve?
+      placeholder: "e.g. Currently I have to manually check each dependency, which is time-consuming and error-prone..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: How do you envision this working? Any specific ideas for implementation?
+      placeholder: "e.g. A new 'dap-bpa blueprint validate-deps' command that checks all imported files exist..."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to your workflow?
+      options:
+        - Nice to have
+        - Would be helpful
+        - Important for my work
+        - Critical/blocking
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Any other details, screenshots, or examples that would help us understand your request
+    validations:
+      required: false

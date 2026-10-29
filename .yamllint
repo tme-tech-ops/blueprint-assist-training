@@ -1,0 +1,23 @@
+---
+extends: default
+
+rules:
+  line-length: disable
+  indentation: disable
+  comments: disable
+  comments-indentation: disable
+  document-start: disable
+  empty-lines: disable
+  truthy: disable
+  trailing-spaces: disable
+  new-line-at-end-of-file: disable
+  new-lines: disable
+  octal-values: disable
+  braces: disable
+  brackets: disable
+  commas: disable
+  colons: disable
+  key-duplicates: disable
+
+ignore: |
+  4.examples/sample-blueprints/kubernetes-on-bare-metal/K8S/infrastructure/templates/

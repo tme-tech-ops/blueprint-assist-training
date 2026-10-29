@@ -1,0 +1,15 @@
+{
+  // MCP demo runbook intentionally repeats section labels (e.g. "Speaker
+  // Script", "Action", "Prompt") under each numbered step for scannability.
+  // Disable the duplicate-heading rule rather than forcing every step's
+  // sub-headings to have artificially unique names.
+  "MD024": false,
+  // ASCII-art architecture diagrams in fenced code blocks routinely exceed
+  // 80 columns and can't be wrapped without breaking the diagram. Markdown
+  // tables (e.g. tool/purpose reference tables) can't be wrapped either
+  // without breaking table syntax. Only enforce line length in prose.
+  "MD013": {
+    "code_blocks": false,
+    "tables": false
+  }
+}
