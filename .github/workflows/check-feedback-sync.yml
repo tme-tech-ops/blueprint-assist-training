@@ -1,0 +1,81 @@
+name: Check Feedback Form Sync
+
+on:
+  # Run on pushes that modify sections or the feedback form
+  push:
+    paths:
+      - '1.sections/section-*/content.md'
+      - '.github/ISSUE_TEMPLATE/learner-feedback.yml'
+  
+  # Run on pull requests that modify sections
+  pull_request:
+    paths:
+      - '1.sections/section-*/content.md'
+      - '.github/ISSUE_TEMPLATE/learner-feedback.yml'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  check-sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    
+    - name: Check if feedback form needs updating
+      run: |
+        echo "Checking if feedback form is synchronized with training sections..."
+        
+        # Count sections in the directory
+        SECTION_COUNT=$(ls 1.sections/ | grep -c "^section-[0-9]")
+        echo "Found $SECTION_COUNT sections in 1.sections/"
+        
+        # Count section ratings in the feedback form
+        FORM_RATINGS=$(grep -c "id: section-.*-rating" .github/ISSUE_TEMPLATE/learner-feedback.yml)
+        echo "Found $FORM_RATINGS section ratings in feedback form"
+        
+        # Check if they match
+        if [ "$SECTION_COUNT" -eq "$FORM_RATINGS" ]; then
+          echo "SUCCESS: Feedback form appears to be synchronized!"
+        else
+          echo "ERROR: Feedback form is out of sync!"
+          echo "   Sections in directory: $SECTION_COUNT"
+          echo "   Ratings in form: $FORM_RATINGS"
+          echo ""
+          echo "To fix this, run:"
+          echo "   python .github/scripts/update-feedback-sections.py"
+          echo ""
+          echo "See .github/MAINTAINING-FEEDBACK-FORM.md for details"
+          exit 1
+        fi
+    
+    - name: Validate feedback form YAML
+      run: |
+        echo "Validating feedback form YAML syntax..."
+        python .github/scripts/validate-yaml.py
+    
+    - name: Check for common issues
+      run: |
+        echo "Checking for common issues..."
+        
+        # Check for duplicate section IDs
+        DUPLICATES=$(grep "id: section-.*-rating" .github/ISSUE_TEMPLATE/learner-feedback.yml | sort | uniq -d)
+        if [ -n "$DUPLICATES" ]; then
+          echo "ERROR: Found duplicate section IDs:"
+          echo "$DUPLICATES"
+          exit 1
+        fi
+        
+        # Check for missing required fields
+        if ! grep -q "required: true" .github/ISSUE_TEMPLATE/learner-feedback.yml; then
+          echo "WARNING: No required fields found - this may be intentional"
+        fi
+        
+        echo "SUCCESS: No common issues detected"

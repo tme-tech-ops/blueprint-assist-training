@@ -1,0 +1,40 @@
+{
+  "servers": {
+    "blueprint-assist": {
+      "type": "http",
+      "url": "https://ai-bp-mcp-server.sp.dell.com/mcp",
+      "headers": {
+        "x-dap-customer-token": "${input:dapCustomerToken}",
+        "x-dap-org-id": "${input:dapOrgId}",
+        "x-dap-orchestrator-domain": "${input:dapOrchestratorDomain}"
+      }
+    },
+    "blueprint-assist-agent": {
+      "type": "http",
+      "url": "https://agent-mcp-server.sp.dell.com/mcp",
+      "headers": {
+        "x-dap-customer-token": "${input:dapCustomerToken}",
+        "x-dap-org-id": "${input:dapOrgId}",
+        "x-dap-orchestrator-domain": "${input:dapOrchestratorDomain}"
+      }
+    }
+  },
+  "inputs": [
+    {
+      "id": "dapCustomerToken",
+      "type": "promptString",
+      "description": "DAP customer OIDC token (obtain from the DAP portal)",
+      "password": true
+    },
+    {
+      "id": "dapOrgId",
+      "type": "promptString",
+      "description": "DAP Org ID"
+    },
+    {
+      "id": "dapOrchestratorDomain",
+      "type": "promptString",
+      "description": "DAP Orchestrator domain (e.g. your-orchestrator.automation.dell.com)"
+    }
+  ]
+}

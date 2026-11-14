@@ -1,0 +1,17 @@
+{
+  "skill_name": "my-dap-patterns",
+  "version": "1.0.0",
+  "trigger_words": [
+    "my patterns",
+    "learn my conventions",
+    "validate against my patterns",
+    "pattern status"
+  ],
+  "example_prompts": [
+    "Learn my naming conventions from my existing blueprints",
+    "Validate this blueprint against my patterns",
+    "What patterns do I have for my current profile?",
+    "Show me a blueprint that follows my VLAN conventions"
+  ],
+  "requires_patterns": false
+}

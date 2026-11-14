@@ -1,0 +1,12 @@
+{
+  "skillName": "deployment-update",
+  "version": "0.33.1",
+  "timestamp": "2026-11-04T20:14:56.167Z",
+  "files": {
+    "resources/api-and-workflow-reference.md": "94b6ed16ccbfa11e07a44ea4b534a4166fbaa9f92d30cc3c11ff6427d7824e4f",
+    "SKILL.functions.md": "14842950cc29e9493035b4b218f19c4cf78826288703eb1686369638686d35cf",
+    "SKILL.md": "8acb99fbb503aa62d0ba68e54a44419bcb4889a7b599d9f6c9421344b0fe4fd2",
+    "SKILL.template.md": "1a78c4f433dad27b1505de03a7fa9aac1658b546d43f7e4ccc0445b8e4968599",
+    "src/__tests__/skill-content.test.ts": "573965e6952e5cef72c97dbf50feb2db34be3a46b69801ce24e7bbdcd1f1d39b"
+  }
+}

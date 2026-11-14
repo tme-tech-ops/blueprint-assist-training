@@ -1,0 +1,32 @@
+{
+  "skillName": "dap",
+  "version": "0.33.1",
+  "timestamp": "2026-11-04T20:14:56.165Z",
+  "files": {
+    "references/artifact-wrapping.md": "8cb683529885567e38469350617166c78279e8dcaaf5b42c13c54231d92919d6",
+    "references/blueprint-examples.md": "24159ed9daee76798d7fd7505ab5e7a2de6a0b356e390966bfc15fbaa84edd68",
+    "references/blueprint_rules_changelog.md": "259ce6039bc4d198f8781b557744cdbb4d7b6ef5c282e2979931df57453d27da",
+    "references/cli-commands.md": "6ae1b3e9016714924602384c89fa352eecd77f4dca2cdc854fc385c23cd9a76f",
+    "references/customer-patterns.md": "2ca7f00090a7ee0b894ae7c0759616070f409efcfef37dbc0a300201dd4f5125",
+    "references/faq.md": "c8510a2c755895c66c8cdce5b3bdd180af9d5464d87e5fa011edfd5a2c8947e6",
+    "references/functions-reference.md": "8fad7750aea1c006371fc95a577c15827e1ba7ea974877be43aee81734b44c7f",
+    "references/github-context.md": "58efd5ddd78e8365ac149908b64d7a9e5b404cbe79bc9e0fb3a63d00e2e34081",
+    "references/guides.md": "3da86ab97a5975528b2b4e296d7cc997e62f37253e504de28f55ca7cc56049a9",
+    "references/input-reference.md": "038e185d1347e8adae5d6229804641d8c03f712e01079044cc30c4cf20685794",
+    "references/migration-guide.md": "80687c27d16d6393020426dc54c996b78ea59ac1ea6a70ff413cef2b86b8e933",
+    "references/monitor.md": "b4e3306667b65b6af27d321d5d71308103d977a265fc0bb283a760f15dabc5e9",
+    "references/onboarding-blueprints.md": "56b2f0943e73bbfd7085f9a2739fe4f0647144342317c376cb819cb1f34694dc",
+    "references/onboarding-deployments.md": "0fe7b993f29a10c58b8dcca97349f16f8bd7e6336a7921af8ad31fe86742f8ec",
+    "references/onboarding-plugins.md": "0f56e57ffa7b3da537dbd6fd8e3ee0efb7ee27cb500e704fbbae0a10160f6622",
+    "references/onboarding-secrets.md": "604cd2eaf7d6bc6bf4e992faef39d5aba71044fe297313af330dc6679a6f0cbd",
+    "references/onboarding-setup.md": "8e77afb98b827399f9eeb7881d8da551ebf4495ef925fc225d18e31d15c0a1da",
+    "references/plugin-troubleshooting.md": "2a2df3c77f646f23c449b1eefefda8d7f53e44f9efb80e2719587897ab281c3f",
+    "references/troubleshooting.md": "58a827685e5fee21273924dbbd1aa67ede7cdbf3066477f86c95650292f96b3e",
+    "SKILL.functions.md": "3bc2a7145538ea5362e2c124130e961dfecc5ee3826cf4137baf935316270921",
+    "SKILL.md": "5e0e73aa90ff3eac71b7ed6bd48a2f02f16d58e3317924bf91b3e38aba6ea6db",
+    "SKILL.template.md": "0cd86880183183e53c0f9a3256ac822343a843a87f7a585aafb70a0fcb89a66f",
+    "src/__tests__/customer-patterns-content.test.ts": "7b2adf5be613fb873d1349a9b3d97bf82594fb6084719adef9151617364cc5ef",
+    "src/__tests__/nativeedge-routing.test.ts": "46543d043a8938e844c880faa7ef38b61b58fc20badb9c5a034de07c75e83b92",
+    "src/__tests__/skill-content.test.ts": "9df2dcaa4af3c3d46ed733017fc7baa0bb4c42ad63f80040c71ec32f4a7cc466"
+  }
+}

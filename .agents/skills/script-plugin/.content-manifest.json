@@ -1,0 +1,10 @@
+{
+  "skillName": "script-plugin",
+  "version": "0.33.1",
+  "timestamp": "2026-11-04T20:14:56.170Z",
+  "files": {
+    "SKILL.functions.md": "b4639cfc5db50d63dfdbccb10c6bde26c6c96f3beab29014f454ebf90954c3b8",
+    "SKILL.md": "6f459cb31640db73b5857919354bb8177e8049b72e991fd35a2a068edd040a2f",
+    "SKILL.template.md": "e6f5405f9e1efcbac3dd932b7c17f958bd247d8708749a0e3befc7f979b8684b"
+  }
+}

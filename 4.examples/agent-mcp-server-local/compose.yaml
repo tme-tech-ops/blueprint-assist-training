@@ -1,0 +1,35 @@
+# Agent MCP Server (local) - works with `podman compose` or `docker compose`
+#
+#   podman load -i agent-mcp-server-0.32.0.tar.gz
+#   cp env.example .env   # fill in values
+#   podman compose up -d
+#   curl http://localhost:3000/health
+services:
+  agent-mcp-server:
+    image: agent-mcp-server:0.32.0
+    container_name: agent-mcp-server
+    env_file: .env
+    environment:
+      PORT: "3000"
+    ports:
+      - "127.0.0.1:${HOST_PORT:-3000}:3000"
+    volumes:
+      # Persistent state: the server writes to ~/.blueprint-assist (pattern sets,
+      # analytics salt/buffer). The named volume keeps it across `compose down`,
+      # recreation after .env changes, and image upgrades.
+      - bpa-data:/home/nodeapp
+      # Lab portals/orchestrators with self-signed certs: put the lab CA in
+      # ./certs/lab-ca.pem and uncomment, plus set NODE_EXTRA_CA_CERTS in .env.
+      # - ./certs:/certs:ro
+      # Blueprint workspace: tool paths (blueprints_dir, blueprint_path) are paths
+      # inside the container. Mount your blueprints to use them; decision traces
+      # are written next to the blueprint, so they persist here too.
+      # - ./workspace:/workspace
+    # Lab orchestrators that only resolve via a hosts-file entry on your machine
+    # are NOT visible inside the container. Pin them here (same IP as your hosts file):
+    # extra_hosts:
+    #   - "<orchestrator-domain>:<orchestrator-ip>"
+    restart: unless-stopped
+
+volumes:
+  bpa-data:

@@ -1,0 +1,9 @@
+{
+  "skillName": "mcp-dapo-setup",
+  "version": "0.33.1",
+  "timestamp": "2026-11-04T20:14:56.168Z",
+  "files": {
+    "references/mcp-guide.md": "80fb8e7b238eefcb450cc04a7afe7bed3b2889294da5e60fd2388fb35cf5cbf8",
+    "SKILL.md": "b1bf7a19615a9e07187d9e0b0d58945a2449272af58a2b01ebeb8c7a7c636d40"
+  }
+}

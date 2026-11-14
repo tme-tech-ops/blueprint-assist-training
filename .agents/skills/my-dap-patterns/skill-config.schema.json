@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SkillConfig",
+  "type": "object",
+  "required": ["skill_name", "version", "trigger_words", "example_prompts", "requires_patterns"],
+  "properties": {
+    "skill_name":        { "type": "string" },
+    "version":           { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "trigger_words":     { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "example_prompts":   { "type": "array", "items": { "type": "string" } },
+    "requires_patterns": { "type": "boolean" }
+  }
+}

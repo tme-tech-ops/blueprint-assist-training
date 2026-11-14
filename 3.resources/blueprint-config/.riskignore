@@ -1,0 +1,26 @@
+# .riskignore - suppresses Blueprint Visualizer risk findings
+#
+# Place this file next to the blueprint's root YAML. Every entry is a waiver:
+# constitution Governance requires each one to be recorded in plan.md's
+# Complexity Tracking table with the rule ID, the affected node, and the
+# reason. Remove an entry as soon as the finding is fixed.
+#
+# Entries that match no finding produce a warning when the visualizer runs,
+# so stale lines are reported rather than silently ignored.
+#
+# Three forms are accepted, one per line:
+#   RULE-ID              every finding from that rule
+#   RULE-ID:node_name    that rule, on the named node only
+#   Exact finding title  any finding whose title matches exactly
+#
+# Prefer the narrowest form. The examples below are commented out so that
+# copying this file suppresses nothing until you choose to.
+
+# Rule on one node: the resolver node has no dependencies by design
+# ND-001:target_resolver
+
+# Exact title: a component that intentionally publishes no capabilities
+# No capabilities or outputs defined
+
+# Whole rule: avoid unless every finding from the rule is reviewed
+# ND-005

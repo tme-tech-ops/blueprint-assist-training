@@ -1,0 +1,89 @@
+name: Sync Public Issue to Pre-release Repo
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    if: github.repository == 'tme-tech-ops/blueprint-assist-training'
+
+    steps:
+      - name: Mirror issue to pre-release repo
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          script: |
+            const issue = context.payload.issue;
+            const labels = (issue.labels || []).map(l => l.name);
+
+            await github.rest.issues.create({
+              owner: 'tme-tech-ops',
+              repo: 'blueprint-assist-training-pre-release',
+              title: `[Public] ${issue.title}`,
+              body: [
+                `**Submitted on public repo by @${issue.user.login}**`,
+                `**Original issue:** ${issue.html_url}`,
+                ``,
+                `---`,
+                ``,
+                issue.body || '_No description provided._'
+              ].join('\n'),
+              labels: ['from-public', ...labels].filter(Boolean)
+            });
+
+      - name: Comment and close public issue
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issue = context.payload.issue;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: [
+                `Thank you for your feedback! This issue has been received and logged with our internal team.`,
+                `It will be tracked and addressed privately. This issue will now be closed here —`,
+                `we'll reach out directly if we need more information.`
+              ].join(' ')
+            });
+
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              state: 'closed',
+              state_reason: 'not_planned'
+            });
+
+            await github.rest.issues.lock({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              lock_reason: 'resolved'
+            });
+
+      - name: Delete public issue via GraphQL
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          script: |
+            const nodeId = context.payload.issue.node_id;
+            try {
+              await github.graphql(`
+                mutation($issueId: ID!) {
+                  deleteIssue(input: {issueId: $issueId}) {
+                    repository { name }
+                  }
+                }
+              `, { issueId: nodeId });
+              core.info('Issue deleted from public repo.');
+            } catch (e) {
+              core.warning('GraphQL deleteIssue failed — issue remains closed and locked. Error: ' + e.message);
+            }

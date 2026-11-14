@@ -1,0 +1,11 @@
+{
+  "skillName": "my-dap-patterns",
+  "version": "0.33.1",
+  "timestamp": "2026-11-04T20:14:56.169Z",
+  "files": {
+    "skill-config.json": "9129cd6aee97a3f7c023e5d85700994fa070beb4444b35ea11af6d9f57b64898",
+    "skill-config.schema.json": "07390d3cafeaf9d60377aae5e345654905eb4480470151b90419268cfe10897a",
+    "SKILL.md": "d170eab020e12d4bb3dbe56ccc651da38b2b628370897f1a5e0cf21fae14aa20",
+    "src/__tests__/skill-content.test.ts": "ef78c5b8143084279abe63fabc43041d9e381dec2a70340c54443084feed4b85"
+  }
+}

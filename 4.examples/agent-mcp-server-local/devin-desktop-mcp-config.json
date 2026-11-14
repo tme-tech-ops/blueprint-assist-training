@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "bpa-gateway": {
+      "serverUrl": "https://ai-bp-mcp-server.sp.dell.com/mcp",
+      "headers": {
+        "x-dap-customer-token": "<GATEWAY_CUSTOMER_TOKEN>",
+        "x-dap-orchestrator-domain": "<YOUR_ORCHESTRATOR_DOMAIN>",
+        "x-dap-org-id": "<YOUR_ORG_ID>"
+      }
+    },
+    "bpa-agent-local": {
+      "serverUrl": "http://localhost:3000/mcp",
+      "headers": {
+        "x-dap-customer-token": "<LOCAL_SERVER_CUSTOMER_TOKEN>",
+        "x-dap-orchestrator-domain": "<YOUR_ORCHESTRATOR_DOMAIN>",
+        "x-dap-org-id": "<YOUR_ORG_ID>"
+      }
+    }
+  }
+}

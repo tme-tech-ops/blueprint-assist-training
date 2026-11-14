@@ -1,0 +1,9 @@
+{
+  "skillName": "blueprint-agent-setup",
+  "version": "0.33.1",
+  "timestamp": "2026-11-04T20:14:56.162Z",
+  "files": {
+    "references/agent-guide.md": "1bb632a16914a6ada20ab399fbaf71b99a7196d2330c4ca55c3f7b8ca86508be",
+    "SKILL.md": "6a98a6b944dc48b99cd1e3c1340fec49795624f5bd77846e9474d4fc0f23e63c"
+  }
+}
